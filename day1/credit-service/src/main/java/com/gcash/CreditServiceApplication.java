@@ -17,6 +17,4 @@ public class CreditServiceApplication {
 		return args -> System.out.println("Hello World!");
 	}
 
-
-
 }
