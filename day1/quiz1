@@ -1,1 +1,12 @@
-1.
+1. Java Enterprise Edition
+2.
+it is a code that is needed for a particular purpose (ex: getters and setters, initializing objects and etc.). But this codes doesnt really contribute to the core functionality of the whole application. These codes are necessary but it tends to be repetitive, time consuming and creates unncessary load to the application that is why by using springboot will make it way more easy.
+
+3. Spring
+4. pivotal software
+5. start.spring.io
+6. it is a decoupled service or a microservice.
+7-9. 
+It is a way of doing code that you can use other classes in another  class in a more efficient way that you dont have to initialize a class every time you use it in a fuction. It will be somehow "local" to the class that you are working on. It will also make it more readable i guess and less effort.
+
+10. mvn spring-boot:run
