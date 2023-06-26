@@ -15,7 +15,6 @@ public class IdGeneratorService {
     }
 
     public String nextId() {
-
         return UUID.randomUUID().toString();
     }
 }
