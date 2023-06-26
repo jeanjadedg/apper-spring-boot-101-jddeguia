@@ -1,5 +1,6 @@
 package com.gcash;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
