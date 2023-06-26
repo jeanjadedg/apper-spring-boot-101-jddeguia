@@ -2,7 +2,6 @@ package com.apper;
 
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,9 +11,12 @@ import java.util.UUID;
 public class AccountService {
 
     private List<Account> accounts = new ArrayList<>();
+
     public Account create(String firstName, String lastName, String userName, String clearPassword) {
         Account account = new Account();
-        account.setId(UUID.randomUUID().toString());
+        String id = UUID.randomUUID().toString();
+        account.setId(id);
+        System.out.println("Generated ID: " + id);
         account.setBalance(1_000.00);
 
         LocalDateTime now = LocalDateTime.now();
@@ -33,7 +35,14 @@ public class AccountService {
 
     }
 
-//    public Account get() {}
+    public Account get(String id) {
+        for (Account account: accounts) {
+            if (account.getId().equals(id)) {
+                return account;
+            }
+        }
+        return null;
+    }
 //
 //    public void update() {}
 //

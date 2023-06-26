@@ -24,4 +24,19 @@ public class AccountController {
         return response;
     }
 
+    @GetMapping("{accountId}")
+    public GetAccountResponse getAccountResponse(@PathVariable String accountId) {
+        Account account = accountService.get(accountId);
+        GetAccountResponse response = new GetAccountResponse();
+
+        response.setFirstName(account.getFirstName());
+        response.setLastName(account.getLastName());
+        response.setUserName(account.getUserName());
+        response.setCreationDate(account.getCreationDate());
+        response.setBalance(account.getBalance());
+
+        return response;
+
+    }
+
 }
