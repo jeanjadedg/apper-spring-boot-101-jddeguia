@@ -11,13 +11,16 @@ import java.util.UUID;
 public class AccountService {
 
     private List<Account> accounts = new ArrayList<>();
+    private IdGeneratorService generatorService;
+
+    public AccountService(IdGeneratorService generatorService) {
+        this.generatorService = generatorService;
+    }
 
     public Account create(String firstName, String lastName, String username, String clearPassword) {
         Account account = new Account();
 
-        String id = UUID.randomUUID().toString();
-        System.out.println("Generated id: " + id);
-
+        String id = generatorService.nextId();
         account.setId(id);
         account.setBalance(1_000.0);
 
@@ -29,7 +32,7 @@ public class AccountService {
         account.setLastName(lastName);
         account.setUsername(username);
         account.setClearPassword(clearPassword);
-        account.setVerificationCode("QW345T");
+        account.setVerificationCode(generatorService.givenUsingApache_whenGeneratingRandomAlphanumericString_thenCorrect(6));
 
         accounts.add(account);
 
@@ -49,12 +52,19 @@ public class AccountService {
     public List<Account> getAll() {
         return accounts;
     }
-//
-//    public void update() {
-//
-//    }
-//
-//    public void delete() {
-//
-//    }
+
+    public void update(String accountId, String firstName, String lastName, String username, String clearPassword) {
+        Account account = get(accountId);
+        account.setFirstName(firstName);
+        account.setLastName(lastName);
+        account.setUsername(username);
+        account.setClearPassword(clearPassword);
+        account.setLastUpdated(LocalDateTime.now());
+        accounts.set(accounts.indexOf(account), account);
+    }
+
+    public void delete(String accountId) {
+        Account account = get(accountId);
+        accounts.remove(account);
+    }
 }
