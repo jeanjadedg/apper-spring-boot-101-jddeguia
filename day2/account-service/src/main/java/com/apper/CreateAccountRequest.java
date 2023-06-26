@@ -2,6 +2,8 @@ package com.apper;
 
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 @Data
 public class CreateAccountRequest {
 
@@ -9,4 +11,5 @@ public class CreateAccountRequest {
     private String lastName;
     private String email;
     private String password;
+    private LocalDateTime registrationDate;
 }

@@ -12,39 +12,49 @@ public class AccountService {
 
     private List<Account> accounts = new ArrayList<>();
 
-    public Account create(String firstName, String lastName, String userName, String clearPassword) {
+    public Account create(String firstName, String lastName, String username, String clearPassword) {
         Account account = new Account();
+
         String id = UUID.randomUUID().toString();
+        System.out.println("Generated id: " + id);
+
         account.setId(id);
-        System.out.println("Generated ID: " + id);
-        account.setBalance(1_000.00);
+        account.setBalance(1_000.0);
 
         LocalDateTime now = LocalDateTime.now();
         account.setCreationDate(now);
-        account.setCreationDate(now);
+        account.setLastUpdate(now);
 
         account.setFirstName(firstName);
         account.setLastName(lastName);
-        account.setUserName(userName);
+        account.setUserName(username);
         account.setPassword(clearPassword);
         account.setVerificationCode("QW345T");
 
         accounts.add(account);
 
         return account;
-
     }
 
-    public Account get(String id) {
-        for (Account account: accounts) {
-            if (account.getId().equals(id)) {
+    public Account get(String accountId) {
+        for (Account account : accounts) {
+            if (account.getId().equals(accountId)) {
                 return account;
             }
         }
+
         return null;
     }
+
+    public List<Account> getAll() {
+        return accounts;
+    }
 //
-//    public void update() {}
+//    public void update() {
 //
-//    public void delete() {}
+//    }
+//
+//    public void delete() {
+//
+//    }
 }
