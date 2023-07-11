@@ -1,7 +1,7 @@
 package com.apper.theblogservice;
 
-import com.apper.theblogservice.Payload.CreateBloggerRequest;
-import com.apper.theblogservice.Payload.CreateBloggerResponse;
+import com.apper.theblogservice.payload.CreateBloggerRequest;
+import com.apper.theblogservice.payload.CreateBloggerResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

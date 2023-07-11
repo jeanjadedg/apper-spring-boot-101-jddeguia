@@ -1,9 +1,8 @@
-package com.apper.theblogservice.Payload;
+package com.apper.theblogservice.payload;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data

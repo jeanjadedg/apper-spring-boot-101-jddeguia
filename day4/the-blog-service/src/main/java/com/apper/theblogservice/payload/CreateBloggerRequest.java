@@ -1,4 +1,4 @@
-package com.apper.theblogservice.Payload;
+package com.apper.theblogservice.payload;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Email;
