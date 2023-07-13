@@ -1,5 +1,7 @@
 package com.apper.theblogservice;
 
+import com.apper.theblogservice.exception.BlogNotFoundException;
+import com.apper.theblogservice.exception.BloggerNotFoundException;
 import com.apper.theblogservice.model.Blog;
 import com.apper.theblogservice.model.Blogger;
 import com.apper.theblogservice.payload.*;
@@ -28,9 +30,8 @@ public class BlogApi {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CreateBlogResponse createBlog(@RequestBody @Valid CreateBlogRequest request) {
-        Blog createdBlog = blogService.createBlog(request.getTitle(), request.getTitle(), request.getBloggerId());
-
+    public CreateBlogResponse createBlog(@RequestBody @Valid CreateBlogRequest request) throws BloggerNotFoundException {
+        Blog createdBlog = blogService.createBlog(request.getTitle(), request.getBody(), request.getBloggerId());
         CreateBlogResponse response = new CreateBlogResponse();
         response.setId(createdBlog.getId());
         response.setBloggerId(createdBlog.getBloggerId().getId());
@@ -42,7 +43,7 @@ public class BlogApi {
 
     @GetMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
-    public BlogDetails blogDetails(@PathVariable String id) {
+    public BlogDetails blogDetails(@PathVariable String id) throws BlogNotFoundException {
         Blog blog = blogService.getBlog(id);
 
         BlogDetails blogDetails = new BlogDetails();
@@ -73,7 +74,7 @@ public class BlogApi {
 
     @PutMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public CreateBlogResponse blogResponse(@PathVariable String id, @RequestBody @Valid UpdateBlogRequest request) {
+    public CreateBlogResponse blogResponse(@PathVariable String id, @RequestBody @Valid UpdateBlogRequest request) throws BlogNotFoundException {
         System.out.println(request);
         Blog blog = blogService.updateBlog(id, request.getTitle(), request.getBody());
         CreateBlogResponse response = new CreateBlogResponse();

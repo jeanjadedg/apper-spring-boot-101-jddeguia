@@ -1,6 +1,7 @@
 package com.apper.theblogservice;
 
-import com.apper.theblogservice.model.Blog;
+import com.apper.theblogservice.exception.BloggerNotFoundException;
+import com.apper.theblogservice.exception.EmailAlreadyRegisteredException;
 import com.apper.theblogservice.model.Blogger;
 import com.apper.theblogservice.payload.*;
 import com.apper.theblogservice.service.BloggerService;
@@ -29,7 +30,7 @@ public class BloggerApi {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CreateBloggerResponse createBlogger(@RequestBody @Valid CreateBloggerRequest request) {
+    public CreateBloggerResponse createBlogger(@RequestBody @Valid CreateBloggerRequest request) throws EmailAlreadyRegisteredException {
         Blogger createdBlogger = bloggerService.createBlogger(request.getEmail(), request.getName(), request.getPassword());
 
         CreateBloggerResponse response = new CreateBloggerResponse();
@@ -41,7 +42,7 @@ public class BloggerApi {
 
     @GetMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
-    public BloggerDetails getBlogger(@PathVariable String id) {
+    public BloggerDetails getBlogger(@PathVariable String id) throws EmailAlreadyRegisteredException, BloggerNotFoundException {
         Blogger blogger = bloggerService.getBlogger(id);
 
         BloggerDetails bloggerDetails = new BloggerDetails();
